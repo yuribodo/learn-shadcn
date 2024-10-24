@@ -1,4 +1,3 @@
-
 import {
   Card,
   CardContent,
@@ -7,6 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 
 
@@ -37,6 +40,13 @@ export default async function Home() {
       {recipes.map(recipe => (
         <Card key={recipe.id} className="flex flex-col justify-between">
           <CardHeader className="flex-row gap-4 items-center">
+            <Avatar >
+              <AvatarImage src={`/img/${recipe.image}`} alt="recipe img"></AvatarImage>
+              <AvatarFallback>
+               {recipe.title.slice(0,2)}
+              </AvatarFallback>
+            </Avatar>
+            
             <div>
               <CardTitle>
                 {recipe.title}
@@ -53,8 +63,8 @@ export default async function Home() {
             </div>
           </CardContent>
           <CardFooter className=" flex justify-between">
-            <button>View</button>
-            {recipe.vegan && <p>Vegan!</p>}
+            <Button>View Recipe</Button>
+            {recipe.vegan && <Badge variant="secondary">Vegan!</Badge>}
           </CardFooter>
         </Card>
       ))}
